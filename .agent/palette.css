@@ -1,0 +1,44 @@
+:root {
+    /* white */
+    --white-100: #fff;
+    --white-200: #fcfcfc;
+    /* whitesmoke */
+    --whitesmoke-100: #f9fafb;
+    --whitesmoke-200: #f3f4f6;
+    --whitesmoke-300: #f5f5f5;
+    /* gainsboro */
+    --gainsboro-100: #e5e7eb;
+    --gainsboro-200: #e8e8e8;
+    /* mediumspringgreen */
+    --mediumspringgreen-100: #25d366;
+    /* black */
+    --black-100: #162330;
+    --black-200: rgba(0, 0, 0, 0);
+    /* darkslategray */
+    --darkslategray-100: #192f46;
+    --darkslategray-200: #374a5d;
+    /* steelblue */
+    --steelblue-100: #2b93bf;
+    /* dimgray */
+    --dimgray-100: #555;
+    --dimgray-200: #576574;
+    /* firebrick */
+    --firebrick-100: #c53637;
+    /* skyblue */
+    --skyblue-100: #80dbff;
+    /* darkturquoise */
+    --darkturquoise-100: #00c3db;
+    /* Homepage Colors */
+    --black: rgb(24, 26, 33);
+    --dimgray: rgb(104, 94, 83);
+    --steelblue: rgb(46, 149, 193);
+    --lightslategray: rgb(131, 148, 155);
+    --whitesmoke: rgb(241, 244, 245);
+    --darkgray: rgb(167, 164, 163);
+    --gray: rgb(133, 123, 99);
+    --steelblue: rgb(48, 134, 171);
+    --silver: rgb(178, 190, 197);
+    --darkslategray: rgb(71, 91, 95);
+    --silver: rgb(199, 200, 201);
+    --silver: rgb(184, 181, 169);
+}
