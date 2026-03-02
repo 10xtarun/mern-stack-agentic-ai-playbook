@@ -44,4 +44,5 @@ content/                # Source content markdown
 8. docs/2-manifest-and-library-functions.md
 9. docs/3-core-components.md
 10. docs/4-layout-pages.md
-11. README.md
+11. docs/5-responsive-design.md
+12. README.md
