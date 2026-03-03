@@ -13,12 +13,14 @@ This week, you'll build a personal portfolio website using **pure HTML5 and CSS3
 ## 🎯 Learning Outcomes
 
 By end of Week 1, you will:
-- ✅ Understand semantic HTML5 structure
-- ✅ Master CSS Grid & Flexbox layouts
-- ✅ Build responsive designs (mobile-first)
-- ✅ Use Git for version control
-- ✅ Deploy on GitHub Pages
-- ✅ Follow professional naming conventions
+* ✅ Understand semantic HTML5 structure
+* ✅ Master CSS Grid & Flexbox layouts
+* ✅ Build responsive designs (mobile-first)
+* ✅ Use Git for version control
+* ✅ Deploy on GitHub Pages
+* ✅ Follow professional naming conventions
+* ✅ Understand how browser rendering works (DOM + CSSOM)
+* ✅ Build accessible and performance-optimized pages
 
 ---
 
@@ -39,6 +41,38 @@ graph TD
     style E fill:#f0e8f8
 ```
 
+### 🔍 What Is Actually Happening?
+
+```mermaid
+sequenceDiagram
+    participant Dev as Student (VS Code)
+    participant Git as Local Git
+    participant GH as GitHub
+    participant Pages as GitHub Pages Server
+    participant User as Visitor Browser
+
+    Dev->>Git: git add / git commit
+    Git->>GH: git push
+    GH->>Pages: Deploy static files
+    User->>Pages: Request website
+    Pages-->>User: Serve HTML + CSS
+```
+
+### 🧠 Key Insight:
+
+GitHub Pages is a **static file server**.
+
+It does NOT:
+* Run Node.js
+* Run databases
+* Process forms
+
+It only serves:
+* `.html`
+* `.css`
+* images
+* static assets
+
 ---
 
 ## Day 1: HTML5 Semantic Structure
@@ -46,7 +80,45 @@ graph TD
 ### Morning Lesson (30 min)
 
 **What is HTML?**
-HTML (HyperText Markup Language) is the skeleton of every website. It provides structure and meaning to content.
+
+HTML (HyperText Markup Language) is the structure of every website. It defines meaning and hierarchy.
+
+---
+
+## 🧱 Visual Representation of HTML Structure
+
+![Image](https://www.w3schools.com/html/img_sem_elements.gif)
+![Image](https://jenkov.com/images/html5/footer-1.png)
+![Image](https://www.researchgate.net/publication/220367615/figure/fig3/AS%3A667587994218498%401536176789096/Semantic-structure-of-our-example-Web-site.png)
+![Image](https://www.ionos.com/digitalguide/fileadmin/DigitalGuide/Schaubilder/semantic-web-with-its-semantic-components.png)
+
+```mermaid
+graph TD
+    A[html] --> B[head]
+    A --> C[body]
+    C --> D[header]
+    C --> E[nav]
+    C --> F[main]
+    C --> G[section]
+    C --> H[article]
+    C --> I[footer]
+```
+
+### 🌳 What Is DOM?
+
+When browser reads HTML:
+
+```mermaid
+graph TD
+    HTML --> Browser
+    Browser --> DOM_Tree
+    DOM_Tree --> Rendered_Page
+```
+
+* Every tag becomes a node.
+* HTML forms a tree.
+* CSS selects these nodes.
+* JS (later) manipulates them.
 
 **Semantic vs Non-Semantic HTML**:
 ```html
@@ -65,7 +137,7 @@ HTML (HyperText Markup Language) is the skeleton of every website. It provides s
 </main>
 ```
 
-**Key Semantic Elements** [^1]:
+**Key Semantic Elements** [^1]
 - `<header>` - Header/navigation area
 - `<nav>` - Navigation links
 - `<main>` - Main content area
@@ -141,7 +213,7 @@ HTML (HyperText Markup Language) is the skeleton of every website. It provides s
 </html>
 ```
 
-**Meta Tags Explained** [^2]:
+**Meta Tags Explained** [^2]
 ```html
 <!-- Character encoding - essential for non-ASCII characters -->
 <meta charset="UTF-8">
@@ -175,7 +247,7 @@ Expand your HTML with:
 
 **Install Git**: https://git-scm.com/downloads
 
-**Basic Git Commands** [^3]:
+**Basic Git Commands** [^3]
 ```bash
 # Initialize repository
 git init
@@ -193,7 +265,7 @@ git commit -m "feat: add semantic HTML structure for portfolio"
 git log --oneline
 ```
 
-**Commit Message Format** (Conventional Commits) [^4]:
+**Commit Message Format** (Conventional Commits) [^4]
 ```
 <type>(<scope>): <description>
 
@@ -216,6 +288,26 @@ Example: feat(portfolio): add semantic HTML structure
 
 ## Day 2: Images, Attributes & Accessibility
 
+### ⚡ How Images Affect Performance
+
+![Image](https://napkinmarketing.com//app/uploads/2016/08/website-redesignrefurb-1600.jpg)
+![Image](https://requestmetrics.com/assets/images/webperf/high-performance-images/image_optimize.png?width=740)
+![Image](https://martinfowler.com/eaaCatalog/index/lazyLoadSketch.gif)
+![Image](https://dotnettrickscloud.blob.core.windows.net/article/angular/3720240602200739.com-png-to-webp-converter%20%281%29)
+
+```mermaid
+graph LR
+    A[5MB Image] --> B[Slow Load]
+    B --> C[User Leaves]
+    D[150KB Optimized Image] --> E[Fast Load]
+    E --> F[Better UX]
+```
+
+Key Takeaway:
+Performance = User Experience.
+
+---
+
 ### Morning Lesson (30 min)
 
 **HTML Attributes - Give Elements Extra Info**:
@@ -233,7 +325,7 @@ Example: feat(portfolio): add semantic HTML structure
 <button aria-label="Close menu">×</button>
 ```
 
-**Images Best Practices** [^5]:
+**Images Best Practices** [^5]
 ```html
 <!-- ❌ Bad: No alt text, no optimization -->
 <img src="photo.jpg">
@@ -255,7 +347,7 @@ Example: feat(portfolio): add semantic HTML structure
 </picture>
 ```
 
-**Accessibility (A11y) Fundamentals** [^6]:
+**Accessibility (A11y) Fundamentals** [^6]
 - Always use alt text for images
 - Use semantic HTML (h1, h2, h3 in order)
 - Color should not be only way to convey info
@@ -344,6 +436,24 @@ git commit -m "feat(portfolio): add project cards with images and alt text"
 
 ## Day 3: Forms & User Input
 
+### 🔄 What Happens When You Submit a Form?
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Click Submit
+    Browser->>Server: POST Request
+    Server-->>Browser: Response
+```
+
+Important:
+GitHub Pages does NOT process forms.
+
+Forms need backend (Node.js/Express) — which you will learn later.
+
 ### Morning Lesson (30 min)
 
 **HTML Forms - Collect User Data**:
@@ -406,14 +516,14 @@ git commit -m "feat(portfolio): add project cards with images and alt text"
 </form>
 ```
 
-**Input Types Available** [^7]:
+**Input Types Available** [^7]
 - `text`, `email`, `password`, `number`
 - `date`, `time`, `datetime-local`
 - `tel`, `url`
 - `checkbox`, `radio`
 - `file`, `color`, `range`
 
-**Accessibility in Forms** [^8]:
+**Accessibility in Forms** [^8]
 - ALWAYS use `<label>` with `for` attribute
 - Use `required` attribute for mandatory fields
 - Provide `placeholder` text as HINT, not label
@@ -518,9 +628,27 @@ git commit -m "feat(portfolio): add contact form with validation"
 
 ## Day 4: Lists & Navigation Menus
 
+### 🗺 Information Architecture (IA)
+
+```mermaid
+graph TD
+    Portfolio --> Home
+    Portfolio --> About
+    Portfolio --> Skills
+    Portfolio --> Projects
+    Portfolio --> Contact
+```
+
+Navigation is:
+* User journey planning
+* Content prioritization
+* Recruiter-first thinking
+
+---
+
 ### Morning Lesson (30 min)
 
-**Lists in HTML** [^9]:
+**Lists in HTML** [^9]
 ```html
 <!-- Unordered List (bullets) -->
 <ul>
@@ -677,9 +805,31 @@ git commit -m "feat(portfolio): add navigation, skills section with lists"
 
 ## Day 5: Meta Tags & SEO Basics
 
+### How Google Uses Your HTML
+
+```mermaid
+graph TD
+    A[Your Website] --> B[Google Crawler]
+    B --> C[Index Database]
+    C --> D[Search Results Page]
+```
+
+![Image](https://i.sstatic.net/39QDb.jpg)
+![Image](https://media.licdn.com/dms/image/v2/D4D12AQG8H-7Wr8pAEA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1723564084126?e=2147483647&t=V1WO0Blh1idBTa81SETPBBMNtvdOcO5H0lulfbheKAE&v=beta)
+![Image](https://cdn.sanity.io/images/tkl0o0xu/production/f688c8fcf82470e91150563163f79e197c5df7d1-1248x870.png)
+![Image](https://cdn.sanity.io/images/tkl0o0xu/production/161a2d167ab3b59c174ab337ecc32919cfef9808-1230x1418.png)
+
+SEO starts with:
+* Semantic HTML
+* Proper headings
+* Descriptive meta tags
+* Fast loading site
+
+---
+
 ### Morning Lesson (30 min)
 
-**Meta Tags Control How Search Engines & Social Media Display Your Site** [^10]:
+**Meta Tags Control How Search Engines & Social Media Display Your Site** [^10]
 
 ```html
 <!DOCTYPE html>
@@ -779,7 +929,7 @@ git commit -m "feat(portfolio): add navigation, skills section with lists"
 
 ---
 
-### SEO Best Practices [^12]:
+### SEO Best Practices [^12]
 
 1. **Heading Hierarchy**: Use h1 once, then h2, h3 (don't skip levels)
 2. **Descriptive URLs**: Use meaningful anchor text, not "click here"
@@ -823,7 +973,7 @@ git commit -m "feat(seo): add meta tags, og tags, favicon and social sharing"
 
 ### Morning Lesson (60 min)
 
-**CSS Basics** [^13]:
+**CSS Basics** [^13]
 
 ```css
 /* Selectors & Specificity */
@@ -859,7 +1009,7 @@ body {
 }
 ```
 
-**Box Model** [^14]:
+**Box Model** [^14]
 
 ```
 ┌─────────────────────────┐
@@ -1027,7 +1177,7 @@ footer {
 
 ### Responsive Design (Day 7)
 
-**Mobile-First Approach** [^15]:
+**Mobile-First Approach** [^15]
 
 ```css
 /* Base styles (mobile first) */
@@ -1072,7 +1222,7 @@ body {
 }
 ```
 
-**Flexbox for Responsive Layouts** [^16]:
+**Flexbox for Responsive Layouts** [^16]
 
 ```css
 /* Flex container */
@@ -1245,6 +1395,34 @@ git push -u origin main
 [^14]: MDN - CSS Box Model: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model
 [^15]: MDN - Responsive Design: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
 [^16]: MDN - Flexbox: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+
+---
+
+[ 16]: MDN - Flexbox: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+
+---
+
+# ✅ Final Result
+
+Your Week 1 now teaches:
+
+* HTML structure
+* DOM understanding
+* Rendering pipeline
+* CSS architecture
+* Performance thinking
+* SEO fundamentals
+* Accessibility basics
+* Git workflow
+* Deployment process
+
+It has evolved from:
+
+> “Build a portfolio”
+
+To:
+
+> “Understand how the browser works and think like a frontend engineer.”
 
 ---
 
