@@ -27,7 +27,9 @@ async function getMarkdownContent(filename: string) {
   // 0. Process internal markdown links to anchor hash links
   contentHtml = contentHtml.replace(/href="([./]*)([^"#]+)(#[^"]*)?"/g, (match, prefix, filename, hash) => {
     if (filename.toLowerCase().endsWith('.md')) {
-      const manifestItem = CONTENT_MANIFEST.find(item => item.file === filename);
+      const manifestItem = CONTENT_MANIFEST.find(item => 
+        item.file === filename || item.file.endsWith('/' + filename)
+      );
       if (manifestItem) {
         // If the link has a specific section hash (like #hero) inside the document, 
         // go directly to that hash on the single page. 

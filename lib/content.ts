@@ -22,7 +22,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'foundation',
         order: 1,
         description: 'Build portfolio with HTML5, CSS3, GitHub Pages',
-        file: 'WEEK-01.md',
+        file: 'mern/WEEK-01.md',
     },
     {
         slug: 'week-02-advanced-css',
@@ -30,7 +30,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'foundation',
         order: 2,
         description: 'Flexbox, Grid, animations, accessibility',
-        file: 'WEEK-02.md',
+        file: 'mern/WEEK-02.md',
     },
 
     // Language (Order 3)
@@ -40,7 +40,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'language',
         order: 3,
         description: 'JS fundamentals, async/await, TypeScript types',
-        file: 'WEEK-03-04-JAVASCRIPT-TYPESCRIPT.md',
+        file: 'mern/WEEK-03-04-JAVASCRIPT-TYPESCRIPT.md',
     },
 
     // Frontend (Order 4)
@@ -50,7 +50,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'frontend',
         order: 4,
         description: 'React hooks, Next.js routing, NextAuth',
-        file: 'WEEK-05-06-REACT-NEXTJS.md',
+        file: 'mern/WEEK-05-06-REACT-NEXTJS.md',
     },
 
     // Backend (Order 5)
@@ -60,7 +60,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'backend',
         order: 5,
         description: 'Node.js, NestJS, MongoDB, full-stack',
-        file: 'WEEK-07-12-BACKEND-INTEGRATION.md',
+        file: 'mern/WEEK-07-12-BACKEND-INTEGRATION.md',
     },
 
     // Capstone (Order 6)
@@ -70,7 +70,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'capstone',
         order: 6,
         description: 'Complete requirements for all 3 capstone projects',
-        file: 'CAPSTONE-PROJECTS.md',
+        file: 'mern/CAPSTONE-PROJECTS.md',
     },
 
     // Support (Order 10-12)
@@ -80,7 +80,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'support',
         order: 10,
         description: 'Tools, project structure, environment',
-        file: 'SETUP-GUIDE.md',
+        file: 'mern/SETUP-GUIDE.md',
     },
     {
         slug: 'internship-diary',
@@ -88,7 +88,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'support',
         order: 11,
         description: 'Track daily learning and progress',
-        file: 'DAILY-INTERNSHIP-DIARY-GUIDE.md',
+        file: 'mern/DAILY-INTERNSHIP-DIARY-GUIDE.md',
     },
     {
         slug: 'best-practices',
@@ -96,7 +96,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'support',
         order: 12,
         description: 'Git, TypeScript, NestJS, API design',
-        file: 'SUPPORTING-MATERIALS.md',
+        file: 'mern/SUPPORTING-MATERIALS.md',
     },
     {
         slug: 'master-outline',
@@ -104,7 +104,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
         category: 'support',
         order: 13,
         description: 'The comprehensive syllabus and timeline overview',
-        file: '00-MASTER-OUTLINE.md',
+        file: 'mern/00-MASTER-OUTLINE.md',
     }
 ]
 

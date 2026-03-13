@@ -7,7 +7,7 @@ export function generateStaticParams() {
     // Generate paths strictly for original markdown files
     // so `npm run build` static export doesn't fail
     return CONTENT_MANIFEST.map((item) => ({
-        catchall: [item.file],
+        catchall: item.file.split('/'),
     }));
 }
 
