@@ -160,7 +160,7 @@ export default async function TrackPage({ params }: { params: Promise<{ track: s
             {section.description} 12 weeks of purely hands-on engineering experience.
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl mb-12 animate-fade-in [animation-delay:600ms]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl mb-12 animate-fade-in [animation-delay:600ms]">
             <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
               <div className="text-3xl font-bold text-primary">12</div>
               <div className="text-xs text-foreground/50 uppercase tracking-wider font-semibold">Weeks</div>
@@ -172,10 +172,6 @@ export default async function TrackPage({ params }: { params: Promise<{ track: s
             <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
               <div className="text-3xl font-bold text-primary">6+</div>
               <div className="text-xs text-foreground/50 uppercase tracking-wider font-semibold">Mini Projects</div>
-            </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
-              <div className="text-3xl font-bold text-primary">0₹</div>
-              <div className="text-xs text-foreground/50 uppercase tracking-wider font-semibold">Cost</div>
             </div>
           </div>
 
