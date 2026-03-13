@@ -1,0 +1,171 @@
+<!--
+  ════════════════════════════════════════════════════════════
+  NAVIGATION PATCH for the existing index.html
+  ════════════════════════════════════════════════════════════
+
+  1.  In the <nav> / top header of your existing site,
+      add this link AFTER the existing nav items:
+
+      <a href="./data-science.html">🧠 Data Science & AI</a>
+
+  2.  At the BOTTOM of the page (above the footer),
+      add the "Also Available" section below.
+
+  3.  Place data-science.html in the SAME directory as index.html
+      (i.e., at the repo root for GitHub Pages).
+
+  ════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ─── ALSO AVAILABLE SECTION ─────────────────────────────
+     Add this block just before the closing </body> tag in index.html
+     Or inside a new <section> at the bottom of the page content.
+ ─────────────────────────────────────────────────────────── -->
+
+<section id="also-available" style="
+  background: linear-gradient(135deg, rgba(99,179,237,0.06) 0%, rgba(104,211,145,0.04) 100%);
+  border-top: 1px solid rgba(99,179,237,0.12);
+  padding: 3rem clamp(1rem, 5vw, 3rem);
+  text-align: center;
+">
+  <p style="
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #63b3ed;
+    margin-bottom: 0.75rem;
+    font-family: monospace;
+  ">Also available on this Playbook</p>
+
+  <h2 style="
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+  ">Data Science &amp; AI Internship Track</h2>
+
+  <p style="
+    color: #718096;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  ">
+    12 weeks. Python → Pandas → ML → NLP → AI APIs.
+    3 group capstone projects. Runs entirely on Google Colab — no installs, no cost.
+  </p>
+
+  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <a href="./data-science.html" style="
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #0a0f1a;
+      background: #63b3ed;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    ">Explore the DS Track →</a>
+
+    <a href="./data-science.html#weeks" style="
+      display: inline-block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      background: transparent;
+      border: 1px solid rgba(99,179,237,0.3);
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+    ">View Full Curriculum</a>
+  </div>
+
+  <!-- Mini track preview cards -->
+  <div style="
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  ">
+    <!-- Phase 1 pill -->
+    <div style="
+      background: rgba(10,15,26,0.7);
+      border: 1px solid rgba(99,179,237,0.15);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      max-width: 220px;
+    ">
+      <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#63b3ed; font-family:monospace; margin-bottom:0.4rem;">Weeks 1–6 · Learn</div>
+      <div style="font-size:0.82rem; color:#e2e8f0; font-weight:600; margin-bottom:0.3rem;">Python · Pandas · Stats · SQL · ML</div>
+      <div style="font-size:0.75rem; color:#718096;">6 mini projects on real datasets</div>
+    </div>
+
+    <!-- Phase 2 pill -->
+    <div style="
+      background: rgba(10,15,26,0.7);
+      border: 1px solid rgba(104,211,145,0.15);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      max-width: 220px;
+    ">
+      <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#68d391; font-family:monospace; margin-bottom:0.4rem;">Weeks 7–12 · Internship</div>
+      <div style="font-size:0.82rem; color:#e2e8f0; font-weight:600; margin-bottom:0.3rem;">NLP · Deep Learning · AI APIs</div>
+      <div style="font-size:0.75rem; color:#718096;">3 group capstone projects</div>
+    </div>
+
+    <!-- Tools pill -->
+    <div style="
+      background: rgba(10,15,26,0.7);
+      border: 1px solid rgba(246,173,85,0.15);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      max-width: 220px;
+    ">
+      <div style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#f6ad55; font-family:monospace; margin-bottom:0.4rem;">100% Free Tools</div>
+      <div style="font-size:0.82rem; color:#e2e8f0; font-weight:600; margin-bottom:0.3rem;">Google Colab · Kaggle · GitHub</div>
+      <div style="font-size:0.75rem; color:#718096;">No installs. Just a browser.</div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+  ════════════════════════════════════════════════════════════
+  FILE PLACEMENT ON GITHUB PAGES
+  ════════════════════════════════════════════════════════════
+
+  Your repo structure should look like this after adding the DS track:
+
+  mern-stack-agentic-ai-playbook/
+  ├── index.html                ← existing (add nav patch above)
+  ├── data-science.html         ← NEW — the DS track landing page
+  └── content/
+      └── ds/
+          ├── index.md
+          ├── week-01.md
+          ├── week-02.md
+          ├── week-03.md
+          ├── week-04.md
+          ├── week-05.md
+          ├── week-06.md
+          ├── week-07.md
+          ├── week-08.md
+          ├── week-09.md
+          ├── week-10.md
+          ├── week-11.md
+          └── week-12.md
+
+  GitHub Pages serves static files. The .md files are downloadable
+  reference docs students can open in GitHub's viewer or their
+  editor — the HTML page is the navigable web experience.
+
+  ════════════════════════════════════════════════════════════
+-->

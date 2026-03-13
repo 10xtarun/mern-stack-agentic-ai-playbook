@@ -1,157 +1,377 @@
 export type ContentTrack = 'mern' | 'data-science' | 'cloud-devops'
 
+export interface TrackPhase {
+    id: string
+    label: string
+    weeks: string
+    color: string
+}
+
 export interface ContentItem {
     slug: string
     title: string
     track: ContentTrack
-    category: 'foundation' | 'language' | 'frontend' | 'backend' | 'capstone' | 'support'
-    order: number
+    category?: string
+    order?: number
     description: string
     file: string
+    phase?: 'learn' | 'internship'
+    week?: number
+    tags?: string[]
+    miniProject?: string
 }
 
-export interface ContentCategory {
-    name: string
+export interface ContentSection {
+    id: string
+    title: string
     slug: string
-    track: ContentTrack
+    description: string
+    icon: string
+    color: string
     items: ContentItem[]
+    phases: TrackPhase[]
+    capstones?: CapstoneProject[]
 }
 
-// Map exactly to the actual files inside the /content directory
-export const CONTENT_MANIFEST: ContentItem[] = [
-    // Foundation (Order 1-2)
+export interface CapstoneProject {
+    title: string
+    subtitle: string
+    description: string
+    icon: string
+    tags: string[]
+}
+
+// ── MERN Track Content ──────────────────────────────
+export const mernItems: ContentItem[] = [
     {
-        slug: 'week-01-portfolio',
+        slug: 'mern/overview',
+        title: 'Programme Overview',
+        track: 'mern',
+        description: '12-week MERN Stack course & internship program overview.',
+        file: 'mern/00-MASTER-OUTLINE.md',
+        tags: ['overview', 'mern', 'fullstack'],
+    },
+    {
+        slug: 'mern/week-01',
         title: 'Week 1: Portfolio Website & Git',
         track: 'mern',
-        category: 'foundation',
-        order: 1,
         description: 'Build portfolio with HTML5, CSS3, GitHub Pages',
         file: 'mern/WEEK-01.md',
+        phase: 'learn',
+        week: 1,
+        tags: ['html', 'css', 'git', 'portfolio'],
+        miniProject: 'Personal Portfolio',
     },
     {
-        slug: 'week-02-advanced-css',
+        slug: 'mern/week-02',
         title: 'Week 2: Advanced CSS & Design Systems',
         track: 'mern',
-        category: 'foundation',
-        order: 2,
         description: 'Flexbox, Grid, animations, accessibility',
         file: 'mern/WEEK-02.md',
+        phase: 'learn',
+        week: 2,
+        tags: ['css-grid', 'flexbox', 'design-systems'],
+        miniProject: 'Landing Page Component',
     },
-
-    // Language (Order 3)
     {
-        slug: 'javascript-typescript',
+        slug: 'mern/week-03-04',
         title: 'Weeks 3-4: JavaScript & TypeScript',
         track: 'mern',
-        category: 'language',
-        order: 3,
         description: 'JS fundamentals, async/await, TypeScript types',
         file: 'mern/WEEK-03-04-JAVASCRIPT-TYPESCRIPT.md',
+        phase: 'learn',
+        week: 3,
+        tags: ['javascript', 'typescript', 'async'],
+        miniProject: 'Typed Quiz Engine',
     },
-
-    // Frontend (Order 4)
     {
-        slug: 'react-nextjs',
+        slug: 'mern/week-05-06',
         title: 'Weeks 5-6: React & Next.js',
         track: 'mern',
-        category: 'frontend',
-        order: 4,
         description: 'React hooks, Next.js routing, NextAuth',
         file: 'mern/WEEK-05-06-REACT-NEXTJS.md',
+        phase: 'learn',
+        week: 5,
+        tags: ['react', 'nextjs', 'tailwind-css'],
+        miniProject: 'Interactive Dashboard',
     },
-
-    // Backend (Order 5)
     {
-        slug: 'backend-integration',
-        title: 'Weeks 7-12: Backend & Capstone',
+        slug: 'mern/week-07-12',
+        title: 'Weeks 7-12: Backend & Integration',
         track: 'mern',
-        category: 'backend',
-        order: 5,
-        description: 'Node.js, NestJS, MongoDB, full-stack',
+        description: 'Node.js, NestJS, MongoDB, full-stack integration',
         file: 'mern/WEEK-07-12-BACKEND-INTEGRATION.md',
+        phase: 'internship',
+        week: 7,
+        tags: ['nodejs', 'nestjs', 'mongodb', 'rest-api'],
     },
-
-    // Capstone (Order 6)
     {
-        slug: 'capstone-projects',
+        slug: 'mern/capstones',
         title: 'Capstone Projects Specifications',
         track: 'mern',
-        category: 'capstone',
-        order: 6,
         description: 'Complete requirements for all 3 capstone projects',
         file: 'mern/CAPSTONE-PROJECTS.md',
+        tags: ['capstone', 'projects', 'specs'],
     },
-
-    // Support (Order 10-12)
     {
-        slug: 'setup-guide',
+        slug: 'mern/setup',
         title: 'Setup Guide',
         track: 'mern',
-        category: 'support',
-        order: 10,
         description: 'Tools, project structure, environment',
         file: 'mern/SETUP-GUIDE.md',
+        tags: ['setup', 'tools', 'guide'],
     },
     {
-        slug: 'internship-diary',
+        slug: 'mern/diary',
         title: 'Daily Internship Diary',
         track: 'mern',
-        category: 'support',
-        order: 11,
         description: 'Track daily learning and progress',
         file: 'mern/DAILY-INTERNSHIP-DIARY-GUIDE.md',
+        tags: ['internship', 'diary', 'documentation'],
     },
     {
-        slug: 'best-practices',
+        slug: 'mern/best-practices',
         title: 'Best Practices & Patterns',
         track: 'mern',
-        category: 'support',
-        order: 12,
         description: 'Git, TypeScript, NestJS, API design',
         file: 'mern/SUPPORTING-MATERIALS.md',
+        tags: ['patterns', 'clean-code', 'architecture'],
+    },
+]
+
+// ── DS Track Content ──────────────────────────────
+export const dsItems: ContentItem[] = [
+    {
+        slug: 'data-science/overview',
+        title: 'Programme Overview',
+        track: 'data-science',
+        description: '12-week Data Science & AI Internship — what you will build and how the programme works.',
+        file: 'data-science/index.md',
+        tags: ['overview', 'programme', 'data science'],
     },
     {
-        slug: 'master-outline',
-        title: 'Course Master Outline',
-        track: 'mern',
-        category: 'support',
-        order: 13,
-        description: 'The comprehensive syllabus and timeline overview',
-        file: 'mern/00-MASTER-OUTLINE.md',
+        slug: 'data-science/week-01',
+        title: 'Week 1 — Python for Data Science',
+        track: 'data-science',
+        description: 'Data types, loops, functions, list comprehensions, file handling. Mini project: Expense Tracker.',
+        file: 'data-science/week-01.md',
+        phase: 'learn',
+        week: 1,
+        tags: ['python', 'colab', 'basics'],
+        miniProject: 'Expense Tracker',
+    },
+    {
+        slug: 'data-science/week-02',
+        title: 'Week 2 — Data Wrangling with Pandas & NumPy',
+        track: 'data-science',
+        description: 'DataFrames, filtering, groupby, missing values, aggregation. Mini project: Student Dataset Analysis.',
+        file: 'data-science/week-02.md',
+        phase: 'learn',
+        week: 2,
+        tags: ['pandas', 'numpy', 'data wrangling'],
+        miniProject: 'Student Dataset Analysis',
+    },
+    {
+        slug: 'data-science/week-03',
+        title: 'Week 3 — Data Visualization',
+        track: 'data-science',
+        description: 'Matplotlib, Seaborn, Plotly. Choosing the right chart for the right question.',
+        file: 'data-science/week-03.md',
+        phase: 'learn',
+        week: 3,
+        tags: ['matplotlib', 'seaborn', 'plotly', 'visualization'],
+        miniProject: 'E-Commerce Sales Story',
+    },
+    {
+        slug: 'data-science/week-04',
+        title: 'Week 4 — Statistics & Probability',
+        track: 'data-science',
+        description: 'Descriptive stats, distributions, correlation, hypothesis testing. Mini project: Salary Analysis.',
+        file: 'data-science/week-04.md',
+        phase: 'learn',
+        week: 4,
+        tags: ['statistics', 'probability', 'scipy'],
+        miniProject: 'Salary Analysis Report',
+    },
+    {
+        slug: 'data-science/week-05',
+        title: 'Week 5 — SQL + Exploratory Data Analysis',
+        track: 'data-science',
+        description: 'SQLite in Colab, JOINs, GROUP BY, full EDA framework with outlier detection.',
+        file: 'data-science/week-05.md',
+        phase: 'learn',
+        week: 5,
+        tags: ['sql', 'eda', 'sqlite'],
+        miniProject: 'E-Commerce Customer EDA',
+    },
+    {
+        slug: 'data-science/week-06',
+        title: 'Week 6 — ML Fundamentals + Prompt Engineering',
+        track: 'data-science',
+        description: 'Linear Regression, Decision Tree, Random Forest. 5 core prompt engineering patterns.',
+        file: 'data-science/week-06.md',
+        phase: 'learn',
+        week: 6,
+        tags: ['machine learning', 'scikit-learn', 'prompt engineering'],
+        miniProject: 'House Price Predictor',
+    },
+    {
+        slug: 'data-science/week-07',
+        title: 'Week 7 — ML in Practice + Capstone Kickoff',
+        track: 'data-science',
+        description: 'Imbalanced data, encoding, pipelines, cross-validation. Submit Project Proposal Document.',
+        file: 'data-science/week-07.md',
+        phase: 'internship',
+        week: 7,
+        tags: ['ml pipelines', 'imbalanced', 'capstone'],
+    },
+    {
+        slug: 'data-science/week-08',
+        title: 'Week 8 — Deep Learning Basics + NLP Intro',
+        track: 'data-science',
+        description: 'Keras, activation functions, TF-IDF vectorization, text classification pipeline.',
+        file: 'data-science/week-08.md',
+        phase: 'internship',
+        week: 8,
+        tags: ['deep learning', 'keras', 'nlp', 'tfidf'],
+    },
+    {
+        slug: 'data-science/week-09',
+        title: 'Week 9 — Capstone Sprint 1: Data Pipeline & EDA',
+        track: 'data-science',
+        description: 'Group work. Data loading, cleaning, 8+ charts, Data Story for all 3 capstone projects.',
+        file: 'data-science/week-09.md',
+        phase: 'internship',
+        week: 9,
+        tags: ['capstone', 'eda', 'group project', 'sprint 1'],
+    },
+    {
+        slug: 'data-science/week-10',
+        title: 'Week 10 — Capstone Sprint 2: Model Building',
+        track: 'data-science',
+        description: 'Train 3 models, compare with metrics table, tune best model, write Model Decision Document.',
+        file: 'data-science/week-10.md',
+        phase: 'internship',
+        week: 10,
+        tags: ['capstone', 'model building', 'evaluation', 'sprint 2'],
+    },
+    {
+        slug: 'data-science/week-11',
+        title: 'Week 11 — AI APIs + Advanced Prompt Engineering',
+        track: 'data-science',
+        description: 'Gemini/OpenAI in Colab. Chain-of-thought, self-critique, structured JSON outputs.',
+        file: 'data-science/week-11.md',
+        phase: 'internship',
+        week: 11,
+        tags: ['ai api', 'gemini', 'openai', 'advanced prompting'],
+    },
+    {
+        slug: 'data-science/week-12',
+        title: 'Week 12 — Capstone Polish + Demo Day',
+        track: 'data-science',
+        description: 'Production notebooks, 10-min presentation, GitHub repo structure, individual reflection.',
+        file: 'data-science/week-12.md',
+        phase: 'internship',
+        week: 12,
+        tags: ['demo day', 'presentation', 'github', 'capstone'],
+    },
+]
+
+export const TRACK_SECTIONS: ContentSection[] = [
+    {
+        id: 'mern',
+        title: 'MERN Stack Mastery',
+        slug: 'mern',
+        description: '12-week programme from web basics to advanced NestJS & MongoDB.',
+        icon: '🚀',
+        color: '#63b3ed',
+        items: mernItems,
+        phases: [
+            { id: 'learn', label: 'Phase 1 — Learn', weeks: '1–6', color: '#63b3ed' },
+            { id: 'internship', label: 'Phase 2 — Internship', weeks: '7–12', color: '#68d391' },
+        ],
+        capstones: [
+            {
+                title: 'E-Learning Platform',
+                subtitle: 'Full-stack LMS',
+                description: 'Build a robust learning management system with video streaming, progress tracking, and payments.',
+                icon: '📚',
+                tags: ['Next.js', 'NestJS', 'Stripe', 'AWS S3']
+            },
+            {
+                title: 'AI Productivity Hub',
+                subtitle: 'SaaS Dashboard',
+                description: 'Create a multi-tenant dashboard integrating AI for content generation and workflow automation.',
+                icon: '⚡',
+                tags: ['OpenAI', 'NextAuth', 'Prisma', 'PostgreSQL']
+            }
+        ]
+    },
+    {
+        id: 'data-science',
+        title: 'Data Science & AI',
+        slug: 'data-science',
+        description: '12-week programme covering Python, ML models and AI APIs.',
+        icon: '🧠',
+        color: '#63b3ed',
+        items: dsItems,
+        phases: [
+            { id: 'learn', label: 'Phase 1 — Learn', weeks: '1–6', color: '#63b3ed' },
+            { id: 'internship', label: 'Phase 2 — Internship', weeks: '7–12', color: '#68d391' },
+        ],
+        capstones: [
+            {
+                title: 'Customer Churn Predictor',
+                subtitle: 'ML Classification',
+                description: 'Build an end-to-end pipeline to predict customer churn with 85%+ accuracy.',
+                icon: '📉',
+                tags: ['Scikit-learn', 'XGBoost', 'Feature Eng', 'SQL']
+            },
+            {
+                title: 'Sentiment Analysis API',
+                subtitle: 'NLP Pipeline',
+                description: 'Analyze real-time social media sentiment using transformers and deploy as a microservice.',
+                icon: '🎭',
+                tags: ['PyTorch', 'HuggingFace', 'FastAPI', 'Docker']
+            },
+            {
+                title: 'AI Document Assistant',
+                subtitle: 'RAG Implementation',
+                description: 'Build a RAG system that answers questions based on private PDF documents.',
+                icon: '🤖',
+                tags: ['LangChain', 'OpenAI', 'Vector DB', 'Streamlit']
+            }
+        ]
+    },
+    {
+        id: 'cloud-devops',
+        title: 'Cloud & DevOps',
+        slug: 'cloud-devops',
+        description: '12-week programme covering AWS, Docker, Kubernetes, and CI/CD. Coming Soon!',
+        icon: '☁️',
+        color: '#f6ad55',
+        items: [],
+        phases: [
+            { id: 'learn', label: 'Phase 1 — Learn', weeks: '1-6', color: '#f6ad55' },
+            { id: 'internship', label: 'Phase 2 — Internship', weeks: '7-12', color: '#fc8181' },
+        ],
+        capstones: []
     }
 ]
 
+// All items flat flat manifest for routing and lookups
+export const CONTENT_MANIFEST: ContentItem[] = [
+    ...mernItems,
+    ...dsItems,
+]
+
 // Helper functions
-export const getContentByTrack = (track: ContentTrack): ContentCategory[] => {
-    const categories: Record<string, ContentItem[]> = {}
-    CONTENT_MANIFEST.filter(item => item.track === track).forEach((item) => {
-        if (!categories[item.category]) categories[item.category] = []
-        categories[item.category].push(item)
-    })
-    return Object.entries(categories).map(([slug, items]) => ({
-        name: getCategoryName(slug as any),
-        slug,
-        track,
-        items: items.sort((a, b) => a.order - b.order),
-    }))
+export const getSectionByTrack = (track: string): ContentSection | undefined => {
+    return TRACK_SECTIONS.find(s => s.slug === track)
 }
 
-export const getContentByCategory = (): ContentCategory[] => {
-    // Legacy support or fallback
-    return getContentByTrack('mern');
-}
-
-export const getCategoryName = (category: string): string => {
-    const names: Record<string, string> = {
-        foundation: 'Foundation',
-        language: 'Language Fundamentals',
-        frontend: 'Frontend Mastery',
-        backend: 'Backend & Integration',
-        capstone: 'Capstone Projects',
-        support: 'Support Materials',
-    }
-    return names[category]
+export const getContentByTrack = (track: ContentTrack): ContentItem[] => {
+    return CONTENT_MANIFEST.filter(item => item.track === track)
 }
 
 export const getContentBySlug = (slug: string): ContentItem | undefined => {
@@ -160,12 +380,4 @@ export const getContentBySlug = (slug: string): ContentItem | undefined => {
 
 export const getAllSlugs = (): string[] => {
     return CONTENT_MANIFEST.map((item) => item.slug)
-}
-
-export const getNextPrevContent = (slug: string) => {
-    const index = CONTENT_MANIFEST.findIndex((item) => item.slug === slug)
-    return {
-        prev: index > 0 ? CONTENT_MANIFEST[index - 1] : undefined,
-        next: index < CONTENT_MANIFEST.length - 1 ? CONTENT_MANIFEST[index + 1] : undefined,
-    }
 }

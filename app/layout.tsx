@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "InternAge | Professional Engineering Paths",
+  title: "Course Playbook | Professional Engineering Paths",
   description: "Comprehensive 12-week course & internship program for MERN, Data Science, and Cloud DevOps.",
 };
 

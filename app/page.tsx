@@ -11,13 +11,13 @@ export default function LandingPage() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       ),
-      color: "from-blue-500 to-cyan-400",
-      bgLight: "bg-blue-500/10",
-      border: "border-blue-500/20"
+      color: "from-primary to-accent-2",
+      bgLight: "bg-primary/10",
+      border: "border-primary/20"
     },
     {
       id: "data-science",
-      name: "Data Science",
+      name: "Data Science & AI",
       description: "Explore data analysis, machine learning, and statistical modeling.",
       icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,40 +44,30 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-between w-full min-h-screen bg-background">
+    <div className="flex flex-col items-center justify-between w-full min-h-screen bg-transparent">
       {/* Header / Navbar */}
-      <header className="w-full h-20 flex items-center justify-between px-6 md:px-12 border-b border-foreground/5 bg-background/50 backdrop-blur-md sticky top-0 z-50">
-        <Link href="/" className="text-2xl font-bold tracking-tight">
-          <span className="text-gradient">Intern</span>Age
+      <header className="w-full h-20 flex items-center justify-between px-6 md:px-12 bg-glass border-b border-white/5 sticky top-0 z-50">
+        <Link href="/" className="text-2xl font-extrabold tracking-tight">
+          <span className="text-gradient">Course</span>Playbook
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
-          <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
-          <Link href="#tracks" className="text-sm font-medium hover:text-primary transition-colors">Tracks</Link>
-          <Link href="#support" className="text-sm font-medium hover:text-primary transition-colors">Support</Link>
-        </nav>
         <div className="flex items-center gap-4">
-          <button className="hidden sm:flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold border border-foreground/10 hover:bg-foreground/5 transition-colors">
-            Log In
-          </button>
-          <button className="h-10 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-white hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all">
-            Join Now
-          </button>
+          <Link href="#tracks" className="text-sm font-bold hover:text-primary transition-colors uppercase tracking-widest px-2 py-1">Tracks</Link>
         </div>
       </header>
 
       {/* Hero Section */}
       <section className="w-full pt-20 pb-12 px-6 flex flex-col items-center text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs md:text-sm font-medium text-primary mb-8 animate-fade-in">
+          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs md:text-sm font-medium text-primary mb-8 animate-fade-in backdrop-blur-sm">
             <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
             Select Your Learning Path
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 animate-slide-up text-balance">
-            Your Career in <br className="hidden md:block" />
-            <span className="text-gradient">Professional Engineering.</span>
+            Your Ultimate <br className="hidden md:block" />
+            <span className="text-gradient">Engineering Playbook.</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-foreground/60 mb-10 animate-fade-in leading-relaxed text-balance">
-            Choose a specialized track designed for high-impact internship preparation. Pure hands-on, no fluff.
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-foreground/60 mb-10 animate-fade-in leading-relaxed text-balance [animation-delay:200ms]">
+            Choose a specialized track designed for high-impact professional preparation. Pure hands-on, no fluff.
           </p>
         </div>
       </section>
@@ -88,10 +78,11 @@ export default function LandingPage() {
           <Link 
             key={track.id}
             href={`/${track.id}`}
-            className={`group relative flex flex-col p-8 rounded-3xl border ${track.border} bg-background hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden`}
+            className={`group relative flex flex-col p-8 rounded-3xl border ${track.border} bg-bg-card hover:bg-bg-card-2 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden animate-slide-up`}
+            style={{ animationDelay: `${300 + idx * 100}ms` }}
           >
             {/* Hover Background Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${track.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
+            <div className={`absolute inset-0 bg-gradient-to-br ${track.color} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`} />
             
             <div className={`h-16 w-16 rounded-2xl ${track.bgLight} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
               <div className={`text-transparent bg-clip-text bg-gradient-to-br ${track.color}`}>
@@ -112,40 +103,6 @@ export default function LandingPage() {
         ))}
       </section>
 
-      {/* Footer */}
-      <footer className="w-full border-t border-foreground/5 bg-foreground/[0.02] py-16 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <Link href="/" className="text-2xl font-bold tracking-tight mb-6 block">
-              <span className="text-gradient">Intern</span>Age
-            </Link>
-            <p className="max-w-md text-foreground/60 leading-relaxed">
-              Empowering the next generation of engineers through rigorous, hands-on internship programs and expert-led tracks.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-foreground/60">
-              <li><Link href="/" className="hover:text-primary">Home</Link></li>
-              <li><Link href="#tracks" className="hover:text-primary">Tracks</Link></li>
-              <li><Link href="#" className="hover:text-primary">Internship Diary</Link></li>
-              <li><Link href="#" className="hover:text-primary">Capstone Projects</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Support</h4>
-            <ul className="space-y-2 text-sm text-foreground/60">
-              <li><Link href="#" className="hover:text-primary">Help Center</Link></li>
-              <li><Link href="#" className="hover:text-primary">Getting Started</Link></li>
-              <li><Link href="#" className="hover:text-primary">Contact Us</Link></li>
-              <li><Link href="#" className="hover:text-primary">Community</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-foreground/5 text-center text-sm text-foreground/40">
-          &copy; {new Date().getFullYear()} InternAge. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }

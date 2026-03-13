@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CONTENT_MANIFEST } from '@/lib/content';
+import { getSectionByTrack } from '@/lib/content';
 
 export default function Sidebar() {
     const pathname = usePathname();
@@ -14,9 +14,20 @@ export default function Sidebar() {
     
     // Extract track from pathname (e.g., /mern -> mern)
     const track = pathname.split('/')[1];
+    const section = getSectionByTrack(track);
 
     // Filter content manifest by the current track
-    const trackContent = CONTENT_MANIFEST.filter(item => item.track === track);
+    const trackContent = section ? section.items : [];
+
+    const navLinks = [
+        { href: "#hero", label: "Overview" },
+        { href: "#curriculum", label: "Curriculum" },
+        { href: "#capstones", label: "Capstones" },
+        ...trackContent.map(item => ({
+            href: `#${item.slug}`,
+            label: item.title,
+        }))
+    ];
 
     // Close sidebar on resize for mobile
     useEffect(() => {
@@ -30,14 +41,6 @@ export default function Sidebar() {
     }, []);
 
     const toggleSidebar = () => setIsOpen(!isOpen);
-
-    const navLinks = [
-        { href: "#hero", label: "Overview" },
-        ...trackContent.map(item => ({
-            href: `#${item.slug}`,
-            label: item.title,
-        }))
-    ];
 
     if (isLandingPage) return null;
 
@@ -56,9 +59,9 @@ export default function Sidebar() {
     return (
         <>
             {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-background/95 backdrop-blur-md border-b border-foreground/10 z-50 flex items-center justify-between px-4">
-                <Link href="/" className="text-xl font-bold tracking-tight" onClick={() => setIsOpen(false)}>
-                    <span className="text-gradient">Intern</span>Age
+            <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-glass border-b border-white/10 z-50 flex items-center justify-between px-4">
+                <Link href="/" className="text-xl font-extrabold tracking-tight" onClick={() => setIsOpen(false)}>
+                    <span className="text-gradient">Course</span>Playbook
                 </Link>
                 <button
                     onClick={toggleSidebar}
@@ -79,18 +82,18 @@ export default function Sidebar() {
 
             {/* Sidebar Desktop + Mobile Off-canvas */}
             <aside
-                className={`fixed top-0 left-0 h-full w-64 bg-background border-r border-foreground/10 z-50 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+                className={`fixed top-0 left-0 h-full w-64 bg-glass border-r border-white/5 z-50 transform transition-transform duration-300 ease-in-out md:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'
                     } flex flex-col`}
             >
                 {/* Logo Desktop */}
-                <div className="hidden md:flex h-16 items-center px-6 border-b border-foreground/10 shrink-0">
-                    <Link href="#hero" className="text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
-                        <span className="text-gradient">Intern</span>Age
+                <div className="hidden md:flex h-16 items-center px-6 border-b border-white/5 shrink-0">
+                    <Link href="/" className="text-2xl font-extrabold tracking-tight hover:opacity-80 transition-opacity">
+                        <span className="text-gradient">Course</span>Playbook
                     </Link>
                 </div>
 
                 {/* Mobile Header in Sidebar text (only visible when open) */}
-                <div className="md:hidden flex h-16 items-center justify-between px-6 border-b border-foreground/10 shrink-0">
+                <div className="md:hidden flex h-16 items-center justify-between px-6 border-b border-white/5 shrink-0">
                     <span className="text-xl font-bold">Menu</span>
                     <button onClick={toggleSidebar} className="p-2 -mr-2 text-foreground/80 hover:text-primary">
                         {CloseIcon}
@@ -98,13 +101,13 @@ export default function Sidebar() {
                 </div>
 
                 {/* Navigation Links */}
-                <nav className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-2">
+                <nav className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-1">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className="px-4 py-2 text-sm font-medium rounded-lg text-foreground/70 hover:bg-primary/10 hover:text-primary transition-colors truncate"
+                            className="px-4 py-2 text-sm font-medium rounded-lg text-foreground/50 hover:bg-white/5 hover:text-primary transition-all truncate"
                         >
                             {link.label}
                         </Link>
@@ -112,18 +115,18 @@ export default function Sidebar() {
                 </nav>
 
                 {/* Bottom Actions */}
-                <div className="p-4 border-t border-foreground/10 shrink-0 flex flex-col gap-2">
+                <div className="p-4 border-t border-white/5 shrink-0 flex flex-col gap-2">
                     <Link
                         href="#hero"
                         onClick={() => setIsOpen(false)}
-                        className="flex w-full h-10 items-center justify-center rounded-lg bg-primary/10 text-primary font-medium transition-colors hover:bg-primary/20"
+                        className="flex w-full h-10 items-center justify-center rounded-lg border border-white/10 text-foreground/50 text-sm font-medium transition-colors hover:bg-white/5"
                     >
                         Return to Top
                     </Link>
                     <Link
                         href="/"
                         onClick={() => setIsOpen(false)}
-                        className="flex w-full h-10 items-center justify-center rounded-lg bg-primary text-white font-medium transition-colors hover:bg-primary-hover shadow-[0_0_10px_rgba(99,102,241,0.3)]"
+                        className="flex w-full h-10 items-center justify-center rounded-lg bg-primary text-white text-sm font-bold transition-all hover:bg-primary-hover shadow-lg shadow-primary/20"
                     >
                         Home
                     </Link>
