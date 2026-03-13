@@ -1,6 +1,9 @@
+export type ContentTrack = 'mern' | 'data-science' | 'cloud-devops'
+
 export interface ContentItem {
     slug: string
     title: string
+    track: ContentTrack
     category: 'foundation' | 'language' | 'frontend' | 'backend' | 'capstone' | 'support'
     order: number
     description: string
@@ -10,6 +13,7 @@ export interface ContentItem {
 export interface ContentCategory {
     name: string
     slug: string
+    track: ContentTrack
     items: ContentItem[]
 }
 
@@ -19,6 +23,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'week-01-portfolio',
         title: 'Week 1: Portfolio Website & Git',
+        track: 'mern',
         category: 'foundation',
         order: 1,
         description: 'Build portfolio with HTML5, CSS3, GitHub Pages',
@@ -27,6 +32,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'week-02-advanced-css',
         title: 'Week 2: Advanced CSS & Design Systems',
+        track: 'mern',
         category: 'foundation',
         order: 2,
         description: 'Flexbox, Grid, animations, accessibility',
@@ -37,6 +43,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'javascript-typescript',
         title: 'Weeks 3-4: JavaScript & TypeScript',
+        track: 'mern',
         category: 'language',
         order: 3,
         description: 'JS fundamentals, async/await, TypeScript types',
@@ -47,6 +54,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'react-nextjs',
         title: 'Weeks 5-6: React & Next.js',
+        track: 'mern',
         category: 'frontend',
         order: 4,
         description: 'React hooks, Next.js routing, NextAuth',
@@ -57,6 +65,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'backend-integration',
         title: 'Weeks 7-12: Backend & Capstone',
+        track: 'mern',
         category: 'backend',
         order: 5,
         description: 'Node.js, NestJS, MongoDB, full-stack',
@@ -67,6 +76,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'capstone-projects',
         title: 'Capstone Projects Specifications',
+        track: 'mern',
         category: 'capstone',
         order: 6,
         description: 'Complete requirements for all 3 capstone projects',
@@ -77,6 +87,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'setup-guide',
         title: 'Setup Guide',
+        track: 'mern',
         category: 'support',
         order: 10,
         description: 'Tools, project structure, environment',
@@ -85,6 +96,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'internship-diary',
         title: 'Daily Internship Diary',
+        track: 'mern',
         category: 'support',
         order: 11,
         description: 'Track daily learning and progress',
@@ -93,6 +105,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'best-practices',
         title: 'Best Practices & Patterns',
+        track: 'mern',
         category: 'support',
         order: 12,
         description: 'Git, TypeScript, NestJS, API design',
@@ -101,6 +114,7 @@ export const CONTENT_MANIFEST: ContentItem[] = [
     {
         slug: 'master-outline',
         title: 'Course Master Outline',
+        track: 'mern',
         category: 'support',
         order: 13,
         description: 'The comprehensive syllabus and timeline overview',
@@ -109,17 +123,23 @@ export const CONTENT_MANIFEST: ContentItem[] = [
 ]
 
 // Helper functions
-export const getContentByCategory = (): ContentCategory[] => {
+export const getContentByTrack = (track: ContentTrack): ContentCategory[] => {
     const categories: Record<string, ContentItem[]> = {}
-    CONTENT_MANIFEST.forEach((item) => {
+    CONTENT_MANIFEST.filter(item => item.track === track).forEach((item) => {
         if (!categories[item.category]) categories[item.category] = []
         categories[item.category].push(item)
     })
     return Object.entries(categories).map(([slug, items]) => ({
         name: getCategoryName(slug as any),
         slug,
+        track,
         items: items.sort((a, b) => a.order - b.order),
     }))
+}
+
+export const getContentByCategory = (): ContentCategory[] => {
+    // Legacy support or fallback
+    return getContentByTrack('mern');
 }
 
 export const getCategoryName = (category: string): string => {

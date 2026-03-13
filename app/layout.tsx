@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
+import MainLayout from "@/components/MainLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "InternAge | MERN Stack Mastery",
-  description: "Comprehensive 12-week MERN Stack course & internship program",
+  title: "InternAge | Professional Engineering Paths",
+  description: "Comprehensive 12-week course & internship program for MERN, Data Science, and Cloud DevOps.",
 };
 
 export default function RootLayout({
@@ -25,13 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex text-foreground bg-background`}
-      >
-        <Sidebar />
-        <main className="flex-1 w-full md:ml-64 relative min-h-screen pt-16 md:pt-0 pb-16">
-          {children}
-        </main>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

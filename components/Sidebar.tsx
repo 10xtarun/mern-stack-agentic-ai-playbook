@@ -1,14 +1,24 @@
 "use client";
 
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { CONTENT_MANIFEST } from '@/lib/content';
 
 export default function Sidebar() {
+    const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("");
+    
+    // Hide sidebar on the main landing page
+    const isLandingPage = pathname === '/';
+    
+    // Extract track from pathname (e.g., /mern -> mern)
+    const track = pathname.split('/')[1];
 
-    // Close sidebar on route change for mobile
+    // Filter content manifest by the current track
+    const trackContent = CONTENT_MANIFEST.filter(item => item.track === track);
+
+    // Close sidebar on resize for mobile
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 768) {
@@ -22,12 +32,14 @@ export default function Sidebar() {
     const toggleSidebar = () => setIsOpen(!isOpen);
 
     const navLinks = [
-        { href: "#hero", label: "Home" },
-        ...CONTENT_MANIFEST.map(item => ({
+        { href: "#hero", label: "Overview" },
+        ...trackContent.map(item => ({
             href: `#${item.slug}`,
             label: item.title,
         }))
     ];
+
+    if (isLandingPage) return null;
 
     const MenuIcon = (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,11 +121,11 @@ export default function Sidebar() {
                         Return to Top
                     </Link>
                     <Link
-                        href="#capstone-projects"
+                        href="/"
                         onClick={() => setIsOpen(false)}
                         className="flex w-full h-10 items-center justify-center rounded-lg bg-primary text-white font-medium transition-colors hover:bg-primary-hover shadow-[0_0_10px_rgba(99,102,241,0.3)]"
                     >
-                        Start Course
+                        Home
                     </Link>
                 </div>
             </aside>

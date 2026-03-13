@@ -25,7 +25,7 @@ export default async function CatchAllPage({ params }: { params: Promise<{ catch
 
     // Provide target redirect URL
     if (manifestItem) {
-        return <ClientRedirect to={`/#${manifestItem.slug}`} />;
+        return <ClientRedirect to={`/${manifestItem.track}#${manifestItem.slug}`} />;
     }
 
     // Default exit (should never happen due to dynamicParams = false)
