@@ -277,6 +277,148 @@ export const dsItems: ContentItem[] = [
     },
 ]
 
+// ── Cloud & DevOps Track Content ────────────────────
+export const cloudDevopsItems: ContentItem[] = [
+    {
+        slug: 'cloud-devops/overview',
+        title: 'Programme Overview',
+        track: 'cloud-devops',
+        description: '12-week Cloud & DevOps Engineering course & internship program overview.',
+        file: 'cloud-devops/index.md',
+        tags: ['overview', 'devops', 'cloud'],
+    },
+    {
+        slug: 'cloud-devops/week-01',
+        title: 'Week 1 — Git & GitHub Essentials',
+        track: 'cloud-devops',
+        description: 'Learn version control and collaboration workflows used in real engineering teams.',
+        file: 'cloud-devops/week-01-git-github.md',
+        phase: 'learn',
+        week: 1,
+        tags: ['git', 'github', 'collaboration'],
+        miniProject: 'DevOps Portfolio Repository',
+    },
+    {
+        slug: 'cloud-devops/week-02',
+        title: 'Week 2 — GitHub Advanced & Automation',
+        track: 'cloud-devops',
+        description: 'Understand collaboration governance and automation.',
+        file: 'cloud-devops/week-02-github-automation.md',
+        phase: 'learn',
+        week: 2,
+        tags: ['governance', 'automation', 'project-management'],
+        miniProject: 'Open-Source Style Repository',
+    },
+    {
+        slug: 'cloud-devops/week-03',
+        title: 'Week 3 — CI/CD & GitHub Actions',
+        track: 'cloud-devops',
+        description: 'Learn Continuous Integration and Continuous Deployment with automation pipelines.',
+        file: 'cloud-devops/week-03-cicd-github-actions.md',
+        phase: 'learn',
+        week: 3,
+        tags: ['cicd', 'github-actions', 'automation'],
+        miniProject: 'Node.js CI Pipeline',
+    },
+    {
+        slug: 'cloud-devops/week-04',
+        title: 'Week 4 — Docker Fundamentals',
+        track: 'cloud-devops',
+        description: 'Learn how to package applications using containers so they run consistently across environments.',
+        file: 'cloud-devops/week-04-docker-fundamentals.md',
+        phase: 'learn',
+        week: 4,
+        tags: ['docker', 'containers', 'virtualization'],
+        miniProject: 'Node.js REST API Containerization',
+    },
+    {
+        slug: 'cloud-devops/week-05',
+        title: 'Week 5 — Docker Compose',
+        track: 'cloud-devops',
+        description: 'Learn how to run multi-container applications.',
+        file: 'cloud-devops/week-05-docker-compose.md',
+        phase: 'learn',
+        week: 5,
+        tags: ['docker-compose', 'microservices', 'networking'],
+        miniProject: 'MERN Backend Stack Deployment',
+    },
+    {
+        slug: 'cloud-devops/week-06',
+        title: 'Week 6 — AWS Fundamentals',
+        track: 'cloud-devops',
+        description: 'Introduce cloud infrastructure using Amazon Web Services.',
+        file: 'cloud-devops/week-06-aws-fundamentals.md',
+        phase: 'learn',
+        week: 6,
+        tags: ['aws', 'cloud', 'ec2', 's3'],
+        miniProject: 'Public API Deployment on EC2',
+    },
+    {
+        slug: 'cloud-devops/week-07',
+        title: 'Week 7 — Production Docker',
+        track: 'cloud-devops',
+        description: 'Learn how to build production-ready Docker containers used in real infrastructure.',
+        file: 'cloud-devops/week-07-production-docker.md',
+        phase: 'internship',
+        week: 7,
+        tags: ['production-docker', 'optimization', 'security'],
+        miniProject: 'Optimized Multi-Stage Build',
+    },
+    {
+        slug: 'cloud-devops/week-08',
+        title: 'Week 8 — AWS Container Deployment',
+        track: 'cloud-devops',
+        description: 'Deploy Docker containers to AWS infrastructure.',
+        file: 'cloud-devops/week-08-aws-deployment.md',
+        phase: 'internship',
+        week: 8,
+        tags: ['ecs', 'orchestration', 'load-balancing'],
+        miniProject: 'ECS Deployment with Load Balancer',
+    },
+    {
+        slug: 'cloud-devops/week-09',
+        title: 'Week 9 — CI/CD for Cloud Deployment',
+        track: 'cloud-devops',
+        description: 'Automate full deployment pipeline from GitHub to AWS.',
+        file: 'cloud-devops/week-09-cicd-aws.md',
+        phase: 'internship',
+        week: 9,
+        tags: ['cicd-automation', 'aws-deploy', 'pipelines'],
+        miniProject: 'Full GitHub to ECS Pipeline',
+    },
+    {
+        slug: 'cloud-devops/week-10',
+        title: 'Week 10 — Monitoring & Observability',
+        track: 'cloud-devops',
+        description: 'Learn how to monitor production systems.',
+        file: 'cloud-devops/week-10-monitoring-logging.md',
+        phase: 'internship',
+        week: 10,
+        tags: ['cloudwatch', 'monitoring', 'logging', 'alerting'],
+        miniProject: 'API Monitoring System',
+    },
+    {
+        slug: 'cloud-devops/week-11',
+        title: 'Week 11 — Capstone Project Planning',
+        track: 'cloud-devops',
+        description: 'Design a production DevOps system architecture.',
+        file: 'cloud-devops/week-11-capstone-planning.md',
+        phase: 'internship',
+        week: 11,
+        tags: ['architecture', 'design', 'planning'],
+    },
+    {
+        slug: 'cloud-devops/week-12',
+        title: 'Week 12 — Capstone Deployment',
+        track: 'cloud-devops',
+        description: 'Deploy full production system with CI/CD and monitoring.',
+        file: 'cloud-devops/week-12-capstone-delivery.md',
+        phase: 'internship',
+        week: 12,
+        tags: ['capstone', 'production-release', 'portfolios'],
+    },
+]
+
 export const TRACK_SECTIONS: ContentSection[] = [
     {
         id: 'mern',
@@ -347,15 +489,37 @@ export const TRACK_SECTIONS: ContentSection[] = [
         id: 'cloud-devops',
         title: 'Cloud & DevOps',
         slug: 'cloud-devops',
-        description: '12-week programme covering AWS, Docker, Kubernetes, and CI/CD. Coming Soon!',
+        description: '12-week programme covering AWS, Docker, Kubernetes, and CI/CD.',
         icon: '☁️',
         color: '#f6ad55',
-        items: [],
+        items: cloudDevopsItems,
         phases: [
-            { id: 'learn', label: 'Phase 1 — Learn', weeks: '1-6', color: '#f6ad55' },
-            { id: 'internship', label: 'Phase 2 — Internship', weeks: '7-12', color: '#fc8181' },
+            { id: 'learn', label: 'Phase 1 — Foundations', weeks: '1-6', color: '#f6ad55' },
+            { id: 'internship', label: 'Phase 2 — Production Systems', weeks: '7-12', color: '#fc8181' },
         ],
-        capstones: []
+        capstones: [
+            {
+                title: 'High-Availability MERN Deployment',
+                subtitle: 'Production Infrastructure',
+                description: 'Deploy a MERN application with auto-scaling, load balancing, and automated CI/CD pipelines.',
+                icon: '🚀',
+                tags: ['AWS ECS', 'GitHub Actions', 'Docker', 'CloudWatch']
+            },
+            {
+                title: 'MLOps Pipeline Deployment',
+                subtitle: 'Data Engineering',
+                description: 'Automate the deployment and monitoring of a machine learning API with production-grade logging.',
+                icon: '📉',
+                tags: ['AWS', 'Docker', 'Monitoring', 'CI/CD']
+            },
+            {
+                title: 'SaaS Cloud Infrastructure',
+                subtitle: 'System Architecture',
+                description: 'Build a multi-tenant cloud architecture following DevOps best practices for scalability and security.',
+                icon: '🏗️',
+                tags: ['Infrastructure as Code', 'AWS', 'Security', 'Monitoring']
+            }
+        ]
     }
 ]
 
@@ -363,6 +527,7 @@ export const TRACK_SECTIONS: ContentSection[] = [
 export const CONTENT_MANIFEST: ContentItem[] = [
     ...mernItems,
     ...dsItems,
+    ...cloudDevopsItems,
 ]
 
 // Helper functions
